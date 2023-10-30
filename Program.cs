@@ -2,20 +2,61 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            //Задание 1
-            //Создайте кортеж User, содержащий имя пользователя Name и массив с текстовой информацией о его пяти любимых блюдах Dishes.
-            //Заполните имя пользователя через ввод в консоль, а информацию о блюдах — в цикле через консоль.
-            (string Name, string[] FavoriteDishes) User;
-            Console.Write("Введите имя: ");
-            User.Name = Console.ReadLine();
-            User.FavoriteDishes = new string[5];
+        //Задание 5.1.5
+        //Напишите программу, которая:
+        // - В цикле вызывает метод ShowColor()
+        // - Записывает его значение в массив из трех цветов favcolors
+        // - Отображает значения этого массива
 
-            for (int i = 0; i < User.FavoriteDishes.GetLength(0); i++)
+        static string ShowColor()
+        {
+            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+            var color = Console.ReadLine();
+
+            switch (color)
             {
-                Console.Write("Введите любимое блюдо #{0}: ", i + 1);
-                User.FavoriteDishes[i] = Console.ReadLine();
+                case "red":
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is red!");
+                    return color;
+
+                case "green":
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is green!");
+                    return color;
+
+                case "cyan":
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is cyan!");
+                    return color;
+
+                default:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("Your color is yellow!");
+                    return color;
+            }
+        }
+
+        public static void Main(string[] args)
+        {
+            string[] favColors = new string[3];
+            for (int i = 0; i < favColors.Length; i++)
+            {
+                favColors[i] = ShowColor();
+            }
+
+            Console.WriteLine("Любимые цвета: ");
+            foreach (string favColor in favColors)
+            {
+                Console.WriteLine(favColor);
             }
 
         }
