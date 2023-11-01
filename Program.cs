@@ -2,50 +2,77 @@
 {
     internal class Program
     {
-        //Задание 5.1.6
-        //Модифицируйте метод из скринкаста:  после ввода массива с клавиатуры необходимо отсортировать массив и вывести его на экран.
+        //Задание 5.2.2 - 5.2.3
+        //Добавьте код из юнита 4.4 (Задание 4.4.2), который получает данные пользователя
+        //Исправьте метод ShowColor, ему необходимо передать поле name кортежа.
 
-        static int[] ArraySort(int[] arr)
+        
+        static string ShowColor(string name)
         {
-            int value = 0;
-            for (int i = 0; i < arr.GetLength(0); i++)
+            Console.WriteLine($"{name}, напишите свой любимый цвет на английском с маленькой буквы");
+            var color = Console.ReadLine();
+
+            switch (color)
             {
-                for (int j = i + 1; j < arr.GetLength(0); j++)
-                {
-                    if (arr[i] > arr[j])
-                    {
-                        value = arr[j];
-                        arr[j] = arr[i];
-                        arr[i] = value;
-                    }
-                }
+                case "red":
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is red!");
+                    return color;
+
+                case "green":
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is green!");
+                    return color;
+                case "cyan":
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is cyan!");
+                    return color;
+                default:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("Your color is yellow!");
+                    return color;
             }
-            
-            return arr;
         }
-        static int[] GetArrayFromConsole()
-        {
-            int[] result = new int[5];
-
-            for (int i = 0; i < result.Length; i++)
-            {
-                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                result[i] = int.Parse(Console.ReadLine());
-            }
-
-            result = ArraySort(result);
-
-            return result;
-        }
-
         public static void Main(string[] args)
         {
-            int[] arr = GetArrayFromConsole();
+            (string name, int age) anketa;
 
-            foreach (int i in arr)
+            Console.Write("Введите имя: ");
+            anketa.name = Console.ReadLine();
+            Console.Write("Введите возраст с цифрами: ");
+            anketa.age = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+
+            Console.WriteLine("Ваше имя: {0}", anketa.name);
+            Console.WriteLine("Ваш возраст: {0}", anketa.age);
+
+            Console.WriteLine();
+
+            string[] favColors = new string[3];
+            for (int i = 0; i < favColors.Length; i++)
             {
-                Console.WriteLine(i);
+                favColors[i] = ShowColor(anketa.name);
             }
+
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Ваши любимые цвета: ");
+            foreach (string favColor in favColors)
+            {
+                Console.WriteLine(favColor);
+            }
+
+            Console.ReadKey();
 
         }
     }
