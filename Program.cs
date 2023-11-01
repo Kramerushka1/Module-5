@@ -1,11 +1,18 @@
-﻿namespace Module_5
+﻿using System;
+
+namespace Module_5
 {
     internal class Program
     {
-        //Задание 5.2.8
-        //Разделить метод из задания 5.1.6 GetArrayFromConsole() на два
-        //Один метод GetArrayFromConsole() должен читать введенные с клавиатуры массивы и возвращать их
-        //Второй метод SortArray() должен принимать параметром массив array типа данных int, сортировать его и возвращать.
+        //Задание 5.2.14
+        //Иcпользуйте методы из задания 5.2.8.
+        //Модифицируйте метод GetArrayFromConsole так, чтобы размерность массива указывалась в качестве необязательного параметра num.
+        //Значение по умолчанию оставить 5. 
+
+        //Задание 5.2.15
+        //Вызовите метод GetArrayFromConsole, не указывая необязательный параметр.
+        //Результат работы метода должен быть в переменной array.
+        //Передайте эту переменную в метод SortArray, а результат этого метода сохраните в переменной sortedarray.
 
         static int[] SortArray(int[] arr)
         {
@@ -25,9 +32,9 @@
 
             return arr;
         }
-        static int[] GetArrayFromConsole()
+        static int[] GetArrayFromConsole(int num = 5)
         {
-            int[] result = new int[5];
+            int[] result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
             {
@@ -40,11 +47,14 @@
 
         public static void Main(string[] args)
         {
-            int[] arr = GetArrayFromConsole();
+            int arrayDim = 3;
+            int[] array = GetArrayFromConsole(arrayDim);
 
-            arr = SortArray(arr);
+            int[] sortedArray = SortArray(array);
+            
+            Console.WriteLine();
 
-            foreach (int i in arr)
+            foreach (int i in sortedArray)
             {
                 Console.WriteLine(i);
             }
