@@ -4,16 +4,26 @@ namespace Module_5
 {
     internal class Program
     {
-        //Задание 5.2.14
-        //Иcпользуйте методы из задания 5.2.8.
-        //Модифицируйте метод GetArrayFromConsole так, чтобы размерность массива указывалась в качестве необязательного параметра num.
-        //Значение по умолчанию оставить 5. 
+        //Задание 5.2.17
+        //Создайте метод ShowArray с параметрами: массив чисел, признак сортировки логического типа, необязательный параметр, по умолчанию ЛОЖЬ.
+        //Метод должен выводить массив на экран.
+        //Если значение признака сортировки равно ИСТИНА, то предварительно массив нужно отсортировать.
 
-        //Задание 5.2.15
-        //Вызовите метод GetArrayFromConsole, не указывая необязательный параметр.
-        //Результат работы метода должен быть в переменной array.
-        //Передайте эту переменную в метод SortArray, а результат этого метода сохраните в переменной sortedarray.
+        //Задание 5.2.18
+        //Вызовите сначала метод заполнения данных массива размерности 10, а потом метод его вывода на экран с сортировкой.
 
+        static int[] GetArrayFromConsole(int num = 5)
+        {
+            int[] result = new int[num];
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+                result[i] = int.Parse(Console.ReadLine());
+            }
+
+            return result;
+        }
         static int[] SortArray(int[] arr)
         {
             int value = 0;
@@ -32,32 +42,28 @@ namespace Module_5
 
             return arr;
         }
-        static int[] GetArrayFromConsole(int num = 5)
+        static void ShowArray(int[] arr, bool sort = false)
         {
-            int[] result = new int[num];
-
-            for (int i = 0; i < result.Length; i++)
+            if (sort)
             {
-                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                result[i] = int.Parse(Console.ReadLine());
+                SortArray(arr);
             }
 
-            return result;
+            foreach (int item in arr)
+            {
+                Console.WriteLine(item);
+            }
         }
-
         public static void Main(string[] args)
         {
-            int arrayDim = 3;
-            int[] array = GetArrayFromConsole(arrayDim);
+            int arrDim = 10;
+            bool needSort = true;
 
-            int[] sortedArray = SortArray(array);
-            
+            int[] array = GetArrayFromConsole(arrDim);
+
             Console.WriteLine();
 
-            foreach (int i in sortedArray)
-            {
-                Console.WriteLine(i);
-            }
+            ShowArray(array, needSort);
 
         }
 
