@@ -1,72 +1,68 @@
 ﻿using System;
+using System.Drawing;
+using System.Globalization;
 
 namespace Module_5
 {
     internal class Program
     {
-        //Задание 5.2.17
-        //Создайте метод ShowArray с параметрами: массив чисел, признак сортировки логического типа, необязательный параметр, по умолчанию ЛОЖЬ.
-        //Метод должен выводить массив на экран.
-        //Если значение признака сортировки равно ИСТИНА, то предварительно массив нужно отсортировать.
-
-        //Задание 5.2.18
-        //Вызовите сначала метод заполнения данных массива размерности 10, а потом метод его вывода на экран с сортировкой.
+        //Задание 5.2.18.
+        public static void Main(string[] args)
+        {
+            bool sort = true;
+            int arrLength = 10;
+            int[] array = GetArrayFromConsole(arrLength);
+            
+            Console.WriteLine();
+            ShowArray(array, sort);
+        }
 
         static int[] GetArrayFromConsole(int num = 5)
         {
-            int[] result = new int[num];
+            var array = new int[num];
 
-            for (int i = 0; i < result.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                result[i] = int.Parse(Console.ReadLine());
+                array[i] = int.Parse(Console.ReadLine());
             }
 
-            return result;
+            return array;
         }
-        static int[] SortArray(int[] arr)
+
+        static int[] SortArray(int[] array)
         {
-            int value = 0;
-            for (int i = 0; i < arr.GetLength(0); i++)
+            int value;
+
+            for (int i = 0; i < array.Length; i++)
             {
-                for (int j = i + 1; j < arr.GetLength(0); j++)
+                for (int j = i + 1; j < array.Length; j++)
                 {
-                    if (arr[i] > arr[j])
+                    if (array[j] < array[i])
                     {
-                        value = arr[j];
-                        arr[j] = arr[i];
-                        arr[i] = value;
+                        value = array[j];
+                        array[j] = array[i];
+                        array[i] = value;
                     }
+                    else continue;
                 }
             }
 
-            return arr;
+            return array;
         }
-        static void ShowArray(int[] arr, bool sort = false)
+
+        static void ShowArray(int[] array, bool sort = false)
         {
             if (sort)
             {
-                SortArray(arr);
+                array = SortArray(array);
             }
 
-            foreach (int item in arr)
+            foreach (int i in array)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(i);
             }
         }
-        public static void Main(string[] args)
-        {
-            int arrDim = 10;
-            bool needSort = true;
-
-            int[] array = GetArrayFromConsole(arrDim);
-
-            Console.WriteLine();
-
-            ShowArray(array, needSort);
-
-        }
-
 
     }
 }
