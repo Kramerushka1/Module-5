@@ -6,31 +6,23 @@ namespace Module_5
 {
     internal class Program
     {
-        //Задание 5.2.18.
+        //Задание 5.3.13
+        //Используйте код метода SortArray. Сейчас этот метод сортирует массив по возрастанию значения.
+        //Создайте методы SortArrayDesc и SortArrayAsc — сортировка массива от большего к меньшему и сортировка массива от меньшего к большему.
+        //
+        //Метод SortArray модифицируйте так, чтобы он вызвал оба этих метода.
+        //Результаты методов SortArrayAsc и SortArrayDesc должны представлять собой массивы.
+        //
+        //Метод SortArray должен иметь один входной параметр array и два выходных: sorteddesc и sorted asc.
+
+
+
         public static void Main(string[] args)
         {
-            bool sort = true;
-            int arrLength = 10;
-            int[] array = GetArrayFromConsole(arrLength);
             
-            Console.WriteLine();
-            ShowArray(array, sort);
         }
 
-        static int[] GetArrayFromConsole(int num = 5)
-        {
-            var array = new int[num];
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                array[i] = int.Parse(Console.ReadLine());
-            }
-
-            return array;
-        }
-
-        static int[] SortArray(int[] array)
+        static int[] SortArrayDesc(int[] array)
         {
             int value;
 
@@ -38,30 +30,54 @@ namespace Module_5
             {
                 for (int j = i + 1; j < array.Length; j++)
                 {
-                    if (array[j] < array[i])
+                    if (array[i] < array[j])
                     {
-                        value = array[j];
-                        array[j] = array[i];
-                        array[i] = value;
+                        value = array[i];
+                        array[i] = array[j];
+                        array[j] = value;
                     }
-                    else continue;
                 }
             }
 
             return array;
         }
 
-        static void ShowArray(int[] array, bool sort = false)
+        static int[] SortArrayAsc(int[] array)
         {
-            if (sort)
+            int value;
+
+            for (int i = 0; i < array.Length; i++)
             {
-                array = SortArray(array);
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    if (array[i] > array[j])
+                    {
+                        value = array[i];
+                        array[i] = array[j];
+                        array[j] = value;
+                    }
+                }
             }
 
-            foreach (int i in array)
+            return array;
+        }
+
+        static void SortArray(in int[] array, out int[] sorteddesc, out int[] sortedasc)
+        {
+            sorteddesc = SortArrayDesc(array);
+            sortedasc = SortArrayAsc(array);
+        }
+
+        static int[] GetArrayFromConsole()
+        {
+            int[] array = new int[4];
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(i);
+                Console.Write("Введите {0} число: ", i + 1);
+                array[i] = int.Parse(Console.ReadLine());
             }
+
+            return array;
         }
 
     }
