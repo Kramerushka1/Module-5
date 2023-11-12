@@ -6,37 +6,34 @@ namespace Module_5
 {
     internal class Program
     {
-        //Задание 5.5.4
-        //Пусть каждая строка окрашивается в новый цвет, связанный с глубиной deep.
+        //Задание 5.5.8
+        //Необходимо написать рекурсивный метод,
+        //который возводит введенное число N типа int в указанную степень pow типа byte.
 
         public static void Main(string[] args)
         {
-            Console.WriteLine("Напишите что-то");
-            var phrase = Console.ReadLine();
-
-            Console.WriteLine("Укажите глубину эха");
-            var deep = int.Parse(Console.ReadLine());
-
-            Echo(phrase, deep);
-
-            Console.ReadKey();
+            int num1 = 5;
+            byte num2 = 3;
+            Console.WriteLine(PowerUp(num1, num2));
         }
 
-        static void Echo(string saidword, int deep)
+        private static int PowerUp(int N, byte pow)
         {
-            var modif = saidword;
-
-            if (modif.Length > 2)
+            if (pow == 0)
             {
-                modif = modif.Remove(0, 2);
+                return 1;
             }
-
-            Console.BackgroundColor = (ConsoleColor)deep;
-            Console.WriteLine("..." + modif);
-
-            if (deep > 1)
+            else
             {
-                Echo(modif, deep - 1);
+
+                if (pow == 1)
+                {
+                    return N;
+                }
+                else
+                {
+                    return N * PowerUp(N, --pow);
+                }
             }
         }
     }
