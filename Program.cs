@@ -11,9 +11,10 @@ namespace Module_5
     {
         public static void Main (string[] args)
         {
-            int[] nums = GetArrayFromConsole();
+            int[] array = GetArrayFromConsole();
+            int[] sortedArray = SortArray(array);
 
-            foreach (int num in nums)
+            foreach (int num in sortedArray)
             {
                 Console.Write($"{num} ");
             }
@@ -24,11 +25,28 @@ namespace Module_5
 
             for (int i = 0; i < result.Length; i++)
             {
-                Console.Write($"Введите элеиент массива номер {i + 1}: ");
+                Console.Write($"Введите элемент массива номер {i + 1}: ");
                 result[i] = int.Parse(Console.ReadLine());
             }
 
             return result;
+        }
+        static int[] SortArray(int[] nums)
+        {
+            int temp;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] > nums[j])
+                    {
+                        temp = nums[i];
+                        nums[i] = nums[j];
+                        nums[j] = temp;
+                    }
+                }
+            }
+            return nums;
         }
     }
 }
