@@ -11,86 +11,24 @@ namespace Module_5
     {
         public static void Main (string[] args)
         {
-            string[] favcolors = new string[3];
-            for(int i = 0; i < favcolors.Length; i++)
-            {
-                favcolors[i] = ShowColor();
-            }
-            
-            Console.WriteLine();
+            int[] nums = GetArrayFromConsole();
 
-            Console.WriteLine("Your colors are:");
-            foreach (string favcolor in favcolors)
+            foreach (int num in nums)
             {
-                Console.WriteLine(favcolor);
+                Console.Write($"{num} ");
             }
         }
-        static string ShowColor()
+        static int[] GetArrayFromConsole()
         {
-            
-            Console.WriteLine("Write your favorite color: ");
-            string color = Console.ReadLine();
+            int[] result = new int[5];
 
-            switch (color)
+            for (int i = 0; i < result.Length; i++)
             {
-                case "red":
-                    YourColorIs();
-                    Red();
-                    break;
-
-                case "green":
-                    YourColorIs();
-                    Green();
-                    break;
-
-                case "cyan":
-                    YourColorIs();
-                    Cyan();
-                    break;
-
-                default:
-                    YourColorIs();
-                    DefaultColor();
-                    break;
+                Console.Write($"Введите элеиент массива номер {i + 1}: ");
+                result[i] = int.Parse(Console.ReadLine());
             }
-            Console.WriteLine();
-            return color;
-        }
-        static void YourColorIs()
-        {
-            Console.WriteLine("Your color is ");
-        }
-        static void ResetColor()
-        {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        static void Red()
-        {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("red");
-            ResetColor();
-        }
-        static void Green()
-        {
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.ForegroundColor = ConsoleColor.Black;
 
-            Console.WriteLine("green");
-            ResetColor();
-        }
-        static void Cyan()
-        {
-            Console.BackgroundColor = ConsoleColor.Cyan;
-            Console.ForegroundColor = ConsoleColor.Black;
-
-            Console.WriteLine("cyan");
-            ResetColor();
-        }
-        static void DefaultColor()
-        {
-            Console.WriteLine("default");
+            return result;
         }
     }
 }
